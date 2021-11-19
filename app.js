@@ -65,6 +65,10 @@ const paragraph = [
 const textArea = document.getElementById("t-area");
 const startButton = document.getElementById("start-btn");
 const displayTimer = document.getElementById("time");
+const results = document.getElementById("results");
+const gwpm = document.getElementById("gwpm");
+const nwpm = document.getElementById("nwpm");
+const acc = document.getElementById("acc");
 let timer = 60;
 let interval;
 //app functions
@@ -107,7 +111,10 @@ const startTest = () => {
       const grossWPM = getGrossWordPerMin(userInput);
       const netWPM = getNetWordPerMin(userInput);
       const accuracy = calculateAccuracy(grossWPM, netWPM);
-      console.log(grossWPM, netWPM, accuracy);
+      gwpm.innerText = grossWPM;
+      nwpm.innerText = netWPM;
+      acc.innerText = accuracy;
+      results.style.display = "block";
     }
   }, 1000);
 };
