@@ -26,7 +26,9 @@
         <div class="col-12 col-md-6">
           <p class="display-3 mb-2">Typing Speed Test</p>
           <p class="text-muted display-5 mb-2">Enter the following text</p>
-          <p class="fs-5 mb-5">Time : 60 seconds left.</p>
+          <p class="fs-5 mb-5">
+            Time : <span id="time">60</span> seconds left.
+          </p>
           <p class="mb-5 fs-5">
             The headphones were on. They had been utilized on purpose. She could
             hear her mom yelling in the background, but couldn't make out
@@ -45,6 +47,7 @@
             aria-label="With textarea"
             style="resize: none"
             id="t-area"
+            disabled
           ></textarea>
         </div>
       </div>
