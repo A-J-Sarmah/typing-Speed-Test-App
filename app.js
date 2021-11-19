@@ -65,7 +65,7 @@ const paragraph = [
 const textArea = document.getElementById("t-area");
 const startButton = document.getElementById("start-btn");
 const displayTimer = document.getElementById("time");
-let timer = 10;
+let timer = 60;
 let interval;
 //app functions
 const extractTextAreaValue = () => {
@@ -77,8 +77,22 @@ const extractTextAreaValue = () => {
   });
   return userTextArray;
 };
-const getWordPerMin = (input) => {
+const getGrossWordPerMin = (input) => {
   return input.length;
+};
+const getNetWordPerMin = (input) => {
+  const compareSection = paragraph.splice(0, input.length);
+  let mistakes = 0;
+  for (let i = 0; i < compareSection.length; i++) {
+    if (compareSection[i] !== input[i]) {
+      mistakes = mistakes + 1;
+    }
+  }
+  netWPM = input.length - mistakes;
+  return netWPM;
+};
+const calculateAccuracy = (grossWPM, netWPM) => {
+  return (netWPM / grossWPM) * 100;
 };
 //interval function
 const startTest = () => {
@@ -89,9 +103,11 @@ const startTest = () => {
     displayTimer.innerHTML = timer;
     if (timer === 0) {
       clearInterval(interval);
-      userInput = extractTextAreaValue();
-      WPM = getWordPerMin(userInput);
-      console.log(WPM);
+      const userInput = extractTextAreaValue();
+      const grossWPM = getGrossWordPerMin(userInput);
+      const netWPM = getNetWordPerMin(userInput);
+      const accuracy = calculateAccuracy(grossWPM, netWPM);
+      console.log(grossWPM, netWPM, accuracy);
     }
   }, 1000);
 };
