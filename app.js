@@ -92,7 +92,7 @@ const getNetWordPerMin = (input) => {
       mistakes = mistakes + 1;
     }
   }
-  netWPM = input.length - mistakes;
+  const netWPM = input.length - mistakes;
   return netWPM;
 };
 const calculateAccuracy = (grossWPM, netWPM) => {
